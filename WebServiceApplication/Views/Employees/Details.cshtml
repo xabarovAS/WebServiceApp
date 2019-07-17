@@ -1,0 +1,59 @@
+﻿@model WebServiceApplication.Models.Employee
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<p>
+</p>
+<h2>Детализация</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecondName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThirdName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThirdName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDEmployeе)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDEmployeе)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.ID }, new { @class = "btn btn-outline-primary" }) |
+    <a href="/Employees/Index" class="btn btn-outline-primary">Вернуться</a>
+</p>
