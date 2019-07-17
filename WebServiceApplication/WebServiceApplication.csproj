@@ -143,6 +143,10 @@
     <Compile Include="Migrations\201907161841083_Initial2.Designer.cs">
       <DependentUpon>201907161841083_Initial2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907171216329_Add.cs" />
+    <Compile Include="Migrations\201907171216329_Add.Designer.cs">
+      <DependentUpon>201907171216329_Add.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AbstractEntity.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -345,6 +349,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907161841083_Initial2.resx">
       <DependentUpon>201907161841083_Initial2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907171216329_Add.resx">
+      <DependentUpon>201907171216329_Add.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
