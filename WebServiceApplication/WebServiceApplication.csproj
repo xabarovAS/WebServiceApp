@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StatusTasksEmployeesController.cs" />
     <Compile Include="Controllers\TasksEmployeesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -334,6 +335,11 @@
     <Content Include="Views\TasksEmployees\Details.cshtml" />
     <Content Include="Views\TasksEmployees\Edit.cshtml" />
     <Content Include="Views\TasksEmployees\Index.cshtml" />
+    <Content Include="Views\StatusTasksEmployees\Create.cshtml" />
+    <Content Include="Views\StatusTasksEmployees\Delete.cshtml" />
+    <Content Include="Views\StatusTasksEmployees\Details.cshtml" />
+    <Content Include="Views\StatusTasksEmployees\Edit.cshtml" />
+    <Content Include="Views\StatusTasksEmployees\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

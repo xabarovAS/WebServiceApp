@@ -27,6 +27,12 @@ namespace WebServiceApplication.Models
         public StatusTask StatusTask { get; set; }
 
 
+        public StatusTasksEmployee()
+        {
+
+        }
+
+
         public void GetTaskStatuses(Guid IDEmployee)
         {
             //Код для получения статуса задач сотруднику
