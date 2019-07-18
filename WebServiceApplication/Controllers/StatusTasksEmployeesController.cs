@@ -29,7 +29,7 @@ namespace WebServiceApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            StatusTasksEmployee statusTasksEmployee = await db.StatusTasksEmployees.FindAsync(id);
+            StatusTasksEmployee statusTasksEmployee = await db.StatusTasksEmployees.Include(i => i.Employeе).Include(i => i.TasksEmployee).FirstOrDefaultAsync(i => i.ID == id); //FindAsync(id);
             if (statusTasksEmployee == null)
             {
                 return HttpNotFound();
@@ -67,7 +67,7 @@ namespace WebServiceApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            StatusTasksEmployee statusTasksEmployee = await db.StatusTasksEmployees.FindAsync(id);
+            StatusTasksEmployee statusTasksEmployee = await db.StatusTasksEmployees.Include(i => i.Employeе).Include(i => i.TasksEmployee).FirstOrDefaultAsync(i => i.ID == id); //await db.StatusTasksEmployees.FindAsync(id);
             if (statusTasksEmployee == null)
             {
                 return HttpNotFound();

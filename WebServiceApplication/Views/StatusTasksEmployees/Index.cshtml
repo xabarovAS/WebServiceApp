@@ -4,10 +4,16 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="text-center">
+    <p>
+    <p>
+        <h2> Список статусов</h2>
+    </p>
+    </p>
+</div>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a class="btn btn-outline-primary" href="/StatusTasksEmployees/Create" role="button">Добавить</a>
 </p>
 <table class="table">
     <tr>
@@ -15,7 +21,7 @@
             Сотрудник
         </th>
         <th>
-           Задача
+            Задача
         </th>
         <th>
             @Html.DisplayNameFor(model => model.StatusTask)
@@ -23,24 +29,25 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Employeе.FullName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.TasksEmployee.FullName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.StatusTask)
-    </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employeе.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TasksEmployee.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusTask)
+            </td>
 
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-    </td>
-</tr>
-}
+            <td>
+                @Html.ActionLink("Изменить", "Edit", new { id = item.ID }, new { @class = "btn btn-outline-success" })
+                @Html.ActionLink("Описание", "Details", new { id = item.ID }, new { @class = "btn btn-outline-primary" })
+                @Html.ActionLink("Удалить", "Delete", new { id = item.ID }, new { @class = "btn btn-outline-danger" })
+            </td>
+        </tr>
+    }
 
 </table>
