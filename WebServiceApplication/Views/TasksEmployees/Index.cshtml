@@ -32,8 +32,8 @@
     <div class="card bg-light mb-3 shadow-lg">
         <div class="card-header">
             <h5> @Html.DisplayFor(modelItem => item.FullName)</h5>
-            @Html.ActionLink("Изменить", "Edit", new { id = item.ID }, new { @class = "btn btn-outline-success" }) |
-            @Html.ActionLink("Описание", "Details", new { id = item.ID }, new { @class = "btn btn-outline-primary" }) |
+            @Html.ActionLink("Изменить", "Edit", new { id = item.ID }, new { @class = "btn btn-outline-success" }) 
+            @Html.ActionLink("Описание", "Details", new { id = item.ID }, new { @class = "btn btn-outline-primary" }) 
             @Html.ActionLink("Удалить", "Delete", new { id = item.ID }, new { @class = "btn btn-outline-danger" })
         </div>
         <div class="card-body">
