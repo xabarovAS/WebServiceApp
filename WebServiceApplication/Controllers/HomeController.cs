@@ -8,8 +8,9 @@ namespace WebServiceApplication.Controllers
 {
     public class HomeController : Controller
     {
+        private MatchingContext db = new MatchingContext();
         public ActionResult Index()
-        {
+        {            
             return View();
         }
 
