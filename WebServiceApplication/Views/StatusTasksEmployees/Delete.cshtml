@@ -11,6 +11,21 @@
 
     <hr />
     <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employeе)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employeе.FullName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TasksEmployee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TasksEmployee.FullName)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.StatusTask)
         </dt>

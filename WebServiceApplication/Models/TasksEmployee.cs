@@ -37,7 +37,7 @@ namespace WebServiceApplication.Models
 
                     foreach (var t in tasksEmployee)
                     {
-                        StatusTasksEmployee statusTasksEmployee = new StatusTasksEmployee() { Employeе = employee, StatusTask = statusTask, TasksEmployee = t };
+                        StatusTasksEmployee statusTasksEmployee = new StatusTasksEmployee() { EmployeеID = employee.ID, Employeе = employee, StatusTask = statusTask, TasksEmployee = t };
                         ListStatusTasksEmployee.Add(statusTasksEmployee);
                     }
 

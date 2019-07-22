@@ -7,6 +7,7 @@
 <p>
 </p>
 <h2>Детализация</h2>
+@Html.ActionLink("Добавить задачи", "AddTaskStatuses", new { id = Model.ID }, new { @class = "btn btn-outline-primary" })
 
 <div>
     <hr />
@@ -54,6 +55,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Изменить", "Edit", new { id = Model.ID }, new { @class = "btn btn-outline-primary" }) 
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.ID }, new { @class = "btn btn-outline-primary" })
     <a href="/Employees/Index" class="btn btn-outline-primary">Вернуться</a>
 </p>

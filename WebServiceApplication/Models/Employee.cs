@@ -29,7 +29,8 @@ namespace WebServiceApplication.Models
         [Display(Name = "Внешний идентификатор пользователя")]
         public Guid IDEmployeе { get; set; }
 
-
+        //public StatusTasksEmployee StatusTasksEmployee { get; set; }
+        public ICollection<StatusTasksEmployee> StatusTasksEmployees { get; set; }
 
         public Employee(string FirstName, string SecondName, string ThirdName) : base($"{SecondName} {FirstName} {ThirdName}")
         {
@@ -37,6 +38,8 @@ namespace WebServiceApplication.Models
             this.SecondName = SecondName;
             this.ThirdName = ThirdName;
             this.IDEmployeе = Guid.NewGuid();
+
+            StatusTasksEmployees = new List<StatusTasksEmployee>();
         }
 
         public Employee()
