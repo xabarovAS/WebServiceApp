@@ -48,7 +48,7 @@ namespace WebServiceApplication.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,StatusTask")] StatusTasksEmployee statusTasksEmployee)
+        public async Task<ActionResult> Create([Bind(Include = "ID,Employeе,TasksEmployee,StatusTask")] StatusTasksEmployee statusTasksEmployee)
         {
             if (ModelState.IsValid)
             {
