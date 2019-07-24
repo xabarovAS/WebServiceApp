@@ -118,6 +118,13 @@ namespace WebServiceApplication.Controllers
             return RedirectToAction("Index");
         }
 
+        public async Task<ActionResult> AddTaskStatuses(int id)
+        {
+            StatusTasksEmployee.AddTaskStatuses(id);
+            return RedirectToAction("Details", new { id });
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

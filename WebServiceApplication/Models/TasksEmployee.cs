@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Services.Protocols;
+using System.Xml.Serialization;
 
 namespace WebServiceApplication.Models
 {
@@ -11,6 +12,7 @@ namespace WebServiceApplication.Models
     {
         [Required(ErrorMessage = "Не указано описание задачи")]
         [Display(Name = "Описание")]
+        [XmlAttribute("Description")]
         public string Description { get; set; }
 
 
@@ -37,7 +39,7 @@ namespace WebServiceApplication.Models
 
                     foreach (var t in tasksEmployee)
                     {
-                        StatusTasksEmployee statusTasksEmployee = new StatusTasksEmployee() { Employeе = employee, StatusTask = statusTask, TasksEmployee = t };
+                        StatusTasksEmployee statusTasksEmployee = new StatusTasksEmployee() { EmployeеID = employee.ID, Employeе = employee, StatusTask = statusTask, TasksEmployee = t };
                         ListStatusTasksEmployee.Add(statusTasksEmployee);
                     }
 

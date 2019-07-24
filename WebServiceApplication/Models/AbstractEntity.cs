@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Serialization;
 
 namespace WebServiceApplication.Models
 {
@@ -12,9 +13,11 @@ namespace WebServiceApplication.Models
     {
         [HiddenInput(DisplayValue = false)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [XmlAttribute("ID")]
         public int ID { get; set; }
 
         [Display(Name = "Наименование")]
+        [XmlAttribute("FullName")]
         public string FullName { get; set; }
 
 

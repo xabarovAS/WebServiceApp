@@ -18,7 +18,7 @@ namespace WebServiceApplication.Controllers
 
         // GET: StatusTasksEmployees
         public async Task<ActionResult> Index()
-        {            
+        {
             return View(await db.StatusTasksEmployees.Include(s => s.TasksEmployee).Include(s => s.Employeе).ToListAsync());
         }
 
@@ -98,7 +98,7 @@ namespace WebServiceApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            StatusTasksEmployee statusTasksEmployee = await db.StatusTasksEmployees.FindAsync(id);
+            StatusTasksEmployee statusTasksEmployee = await db.StatusTasksEmployees.Include(i => i.Employeе).Include(i => i.TasksEmployee).FirstOrDefaultAsync(i => i.ID == id);
             if (statusTasksEmployee == null)
             {
                 return HttpNotFound();
@@ -116,7 +116,7 @@ namespace WebServiceApplication.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)

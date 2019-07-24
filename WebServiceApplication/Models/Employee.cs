@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Xml.Serialization;
 
 namespace WebServiceApplication.Models
 {
@@ -14,22 +15,30 @@ namespace WebServiceApplication.Models
 
         [Required(ErrorMessage = "Не указано имя пользователя")]
         [Display(Name = "Имя")]
+        [XmlAttribute("FirstName")]
+        [MinLength(1)]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Не указана фамилия пользователя")]
         [Display(Name = "Фамилия")]
+        [XmlAttribute("SecondName")]
         public string SecondName { get; set; }
 
         [Required(ErrorMessage = "Не указано отчество пользователя")]
         [Display(Name = "Отчество")]
+        [XmlAttribute("ThirdName")]
         public string ThirdName { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Required(ErrorMessage = "Не присвоен идентификатор пользователя")]
         [Display(Name = "Внешний идентификатор пользователя")]
+        [XmlAttribute("IDEmployeе")]
+        
         public Guid IDEmployeе { get; set; }
 
-
+        //public StatusTasksEmployee StatusTasksEmployee { get; set; }
+        [XmlIgnore]
+        public ICollection<StatusTasksEmployee> StatusTasksEmployees { get; set; }
 
         public Employee(string FirstName, string SecondName, string ThirdName) : base($"{SecondName} {FirstName} {ThirdName}")
         {
@@ -37,6 +46,8 @@ namespace WebServiceApplication.Models
             this.SecondName = SecondName;
             this.ThirdName = ThirdName;
             this.IDEmployeе = Guid.NewGuid();
+
+            StatusTasksEmployees = new List<StatusTasksEmployee>();
         }
 
         public Employee()
@@ -44,6 +55,7 @@ namespace WebServiceApplication.Models
             this.FullName = this.GetInfo();
             this.IDEmployeе = Guid.NewGuid();
         }
+       
 
         public string GetInfo()
         {
