@@ -29,7 +29,7 @@ namespace WebServiceApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = await db.Employeеs.FindAsync(id);
+            Employee employee = await db.Employeеs.Include(p => p.MeteringDevices).FirstAsync(p => p.ID == id);
             if (employee == null)
             {
                 return HttpNotFound();

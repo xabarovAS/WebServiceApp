@@ -136,25 +136,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MatchingContext.cs" />
-    <Compile Include="Migrations\201907161828219_Initial.cs" />
-    <Compile Include="Migrations\201907161828219_Initial.Designer.cs">
-      <DependentUpon>201907161828219_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907161841083_Initial2.cs" />
-    <Compile Include="Migrations\201907161841083_Initial2.Designer.cs">
-      <DependentUpon>201907161841083_Initial2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907171216329_Add.cs" />
-    <Compile Include="Migrations\201907171216329_Add.Designer.cs">
-      <DependentUpon>201907171216329_Add.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907191236578_a.cs" />
-    <Compile Include="Migrations\201907191236578_a.Designer.cs">
-      <DependentUpon>201907191236578_a.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907220613189_b.cs" />
-    <Compile Include="Migrations\201907220613189_b.Designer.cs">
-      <DependentUpon>201907220613189_b.cs</DependentUpon>
+    <Compile Include="Migrations\201907241804350_a.cs" />
+    <Compile Include="Migrations\201907241804350_a.Designer.cs">
+      <DependentUpon>201907241804350_a.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AbstractEntity.cs" />
@@ -358,27 +342,15 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907161828219_Initial.resx">
-      <DependentUpon>201907161828219_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907161841083_Initial2.resx">
-      <DependentUpon>201907161841083_Initial2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907171216329_Add.resx">
-      <DependentUpon>201907171216329_Add.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907191236578_a.resx">
-      <DependentUpon>201907191236578_a.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907220613189_b.resx">
-      <DependentUpon>201907220613189_b.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201907241804350_a.resx">
+      <DependentUpon>201907241804350_a.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

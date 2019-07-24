@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace WebServiceApplication.Models
 {
@@ -12,7 +13,13 @@ namespace WebServiceApplication.Models
 
         [Required(ErrorMessage = "Не указан владелец")]
         [Display(Name = "Владелец прибора учета")]
-        public Employee Owner { get; set; }
+        [ForeignKey("OwnerID")]
+        public virtual Employee Owner { get; set; }
+
+        [Required(ErrorMessage = "Не указан пользователь")]
+        [Display(Name = "Пользователь")]
+        [HiddenInput(DisplayValue = false)]
+        public int OwnerID { get; set; }
 
         [Display(Name = "Заводской номер")]
         public string FactoryNumber { get; set; }
