@@ -14,6 +14,7 @@ namespace WebServiceApplication.Models
         [HiddenInput(DisplayValue = false)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [XmlAttribute("ID")]
+        [XmlIgnore]
         public int ID { get; set; }
 
         [Display(Name = "Наименование")]

@@ -27,6 +27,7 @@ namespace WebServiceApplication
         public struct Person
         {
             [XmlAttribute("FirstName")]
+            [RequiredAttribute]
             public string FirstName { get; set; }
 
             [XmlAttribute("SecondName")]
