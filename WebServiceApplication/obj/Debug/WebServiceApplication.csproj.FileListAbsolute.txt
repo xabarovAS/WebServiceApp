@@ -176,3 +176,4 @@ C:\Users\Хабаров Алексей\Desktop\GitHub\WebServiceApp\WebServiceAp
 C:\Users\Хабаров Алексей\Desktop\GitHub\WebServiceApp\WebServiceApplication\obj\Debug\WebServiceApplication.csproj.CopyComplete
 C:\Users\Хабаров Алексей\Desktop\GitHub\WebServiceApp\WebServiceApplication\obj\Debug\WebServiceApplication.dll
 C:\Users\Хабаров Алексей\Desktop\GitHub\WebServiceApp\WebServiceApplication\obj\Debug\WebServiceApplication.pdb
+C:\Users\Хабаров Алексей\Desktop\GitHub\WebServiceApp\WebServiceApplication\obj\Debug\WebServiceApplication.Migrations.b.resources
