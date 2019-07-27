@@ -35,8 +35,9 @@ namespace WebServiceApplication.Models
         [XmlAttribute("IDEmployeе")]
         
         public Guid IDEmployeе { get; set; }
+        public byte[] Image { get; set; }
 
-        
+
         [XmlIgnore]
         public ICollection<StatusTasksEmployee> StatusTasksEmployees { get; set; }
 

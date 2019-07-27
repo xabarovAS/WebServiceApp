@@ -27,6 +27,7 @@ namespace WebServiceApplication
         public struct Person
         {
             [XmlAttribute("FirstName")]
+            [RequiredAttribute]
             public string FirstName { get; set; }
 
             [XmlAttribute("SecondName")]
@@ -34,7 +35,10 @@ namespace WebServiceApplication
 
             [XmlAttribute("ThirdName")]
             public string ThirdName { get; set; }
-            
+
+            [XmlAttribute("Image")]
+            public string Image { get; set; }
+
         }
         public struct Device
         {
@@ -73,10 +77,15 @@ namespace WebServiceApplication
             if (Mistake != "")
             {
                 throw new Exception(Mistake);
-            }
+            }           
 
-            Employee employeе = new Employee() { FirstName = person.FirstName, SecondName = person.SecondName, ThirdName = person.ThirdName };            
+            Employee employeе = new Employee() { FirstName = person.FirstName, SecondName = person.SecondName, ThirdName = person.ThirdName };
+            if (person.Image != "")
+            {
+                employeе.Image = System.Text.Encoding.UTF8.GetBytes(person.Image);
+            }
             db.Employeеs.Add(employeе);
+            db.SaveChanges();
 
             return employeе;
         }
