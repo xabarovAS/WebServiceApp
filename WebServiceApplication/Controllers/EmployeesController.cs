@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebServiceApplication;
 using WebServiceApplication.Models;
+using System.Text;
 
 namespace WebServiceApplication.Controllers
 {
@@ -35,12 +36,13 @@ namespace WebServiceApplication.Controllers
                 return HttpNotFound();
             }
 
-            if (employee.Image != null)
-            {
-                string imreBase64Data = Convert.ToBase64String(employee.Image);
-                string imgDataURL = string.Format("data:image/png;base64,{0}", imreBase64Data);
-                ViewBag.ImageData = imgDataURL;
-            }
+            //if (employee.Image != null)
+            //{
+                
+            //    //string imreBase64Data = Convert.ToBase64String(employee.Image);
+            //    //string imgDataURL = string.Format("data:image/png;base64,{0}", imreBase64Data);
+            //    ViewBag.ImageData = Encoding.ASCII.GetString(employee.Image);
+            //}
 
             return View(employee);
         }
@@ -126,7 +128,7 @@ namespace WebServiceApplication.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<ActionResult> AddTaskStatuses(int id)
+        public ActionResult AddTaskStatuses(int id)
         {
             StatusTasksEmployee.AddTaskStatuses(id);
             return RedirectToAction("Details", new { id });

@@ -13,7 +13,7 @@
 </div>
 
 <p>
-    <a class="btn btn-outline-primary" href="/StatusTasksEmployees/Create" role="button">Добавить</a>
+   @* <a class="btn btn-outline-primary" href="/StatusTasksEmployees/Create" role="button">Добавить</a>*@
 </p>
 <table class="table">
     <tr>
@@ -40,12 +40,18 @@
                 @Html.DisplayFor(modelItem => item.TasksEmployee.FullName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StatusTask)
+                
+                @if (item.StatusTask == WebServiceApplication.Models.StatusTask.Done)
+                {
+                    <text>Выполнено</text>
+                }
+                else
+                {
+                    <text>Не выполнено</text>                   
+                }
             </td>
 
-            <td>
-                @Html.ActionLink("Изменить", "Edit", new { id = item.ID }, new { @class = "btn btn-outline-success" })
-                @Html.ActionLink("Описание", "Details", new { id = item.ID }, new { @class = "btn btn-outline-primary" })
+            <td>                
                 @Html.ActionLink("Удалить", "Delete", new { id = item.ID }, new { @class = "btn btn-outline-danger" })
             </td>
         </tr>

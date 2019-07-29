@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
@@ -24,25 +25,28 @@ namespace WebServiceApplication
         private MatchingContext db = new MatchingContext();
 
         
-        public struct Person
+        public class Person
         {
             [XmlAttribute("FirstName")]
-            [RequiredAttribute]
+            [Required(ErrorMessage = "Не указано имя пользователя.")]
             public string FirstName { get; set; }
 
             [XmlAttribute("SecondName")]
+            [Required(ErrorMessage = "Не указана фамилия пользователя.")]
             public string SecondName { get; set; }
 
             [XmlAttribute("ThirdName")]
+            [Required(ErrorMessage = "Не указано отчество пользователя.")]
             public string ThirdName { get; set; }
 
             [XmlAttribute("Image")]
+            [Required(ErrorMessage = "Необходимо передать base64 сроку.")]
             public string Image { get; set; }
-
+                        
         }
         public struct Device
         {
-            [XmlAttribute("IDEmployeе")]
+            [XmlAttribute("IDEmployeе")]            
             public Guid IDEmployeе { get; set; }
 
             [XmlAttribute("FactoryNumber")]
@@ -50,40 +54,37 @@ namespace WebServiceApplication
 
             [XmlAttribute("IDMeteringDevice")]
             public Guid IDMeteringDevice { get; set; }
-
         }
 
 
 
-        [WebMethod]        
-        //[SoapHeader("FirstName")]
-        //[SoapDocumentMethod(Param)]
+        [WebMethod]                
         public Employee Authorization(Person person)
         {
+            var results = new List<ValidationResult>();
+            var context = new ValidationContext(person);
             string Mistake = "";
-            if (person.FirstName == "")
+            if (!Validator.TryValidateObject(person, context, results, true))
             {
-                Mistake = "Не указан атрибут FirstName.";
-            }
-            if (person.SecondName == "")
-            {
-                Mistake = Mistake + " Не указан атрибут SecondName.";
-            }
-            if (person.ThirdName == "")
-            {
-                Mistake = Mistake + " Не указан атрибут ThirdName.";
+                foreach (var error in results)
+                {
+                    Mistake = Mistake + " " + error.ErrorMessage;
+                }
             }
 
             if (Mistake != "")
             {
                 throw new Exception(Mistake);
-            }           
+            }
 
             Employee employeе = new Employee() { FirstName = person.FirstName, SecondName = person.SecondName, ThirdName = person.ThirdName };
+            employeе.FullName = employeе.GetInfo();
+
             if (person.Image != "")
             {
-                employeе.Image = System.Text.Encoding.UTF8.GetBytes(person.Image);
+                employeе.Image = Convert.FromBase64String(person.Image);
             }
+
             db.Employeеs.Add(employeе);
             db.SaveChanges();
 
@@ -93,11 +94,10 @@ namespace WebServiceApplication
 
         [WebMethod]
         public TasksEmployee[] GetTasksToEmployee()
-        {
+        {       
             try
             {
-                TasksEmployee[] tasksEmployees = db.TasksEmployees.ToArray();
-
+                TasksEmployee[] tasksEmployees      = db.TasksEmployees.ToArray();
                 return tasksEmployees;
             }
             catch
@@ -109,10 +109,10 @@ namespace WebServiceApplication
 
         [WebMethod]
         public string AddTasksToEmployee(Guid IDEmployeе)
-        {
+        {     
             try
             {
-                TasksEmployee.AddTasksToEmployee(IDEmployeе);
+                TasksEmployee.AddTasksToEmployee(IDEmployeе);                
                 return "Выполнено";
             }
             catch

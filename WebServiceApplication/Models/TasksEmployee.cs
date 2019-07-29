@@ -35,12 +35,20 @@ namespace WebServiceApplication.Models
                 {
                     var tasksEmployee                                   = db.TasksEmployees.ToList();
                     StatusTask statusTask                               = StatusTask.NotDone;
+                    StatusTask statusDone                               = StatusTask.Done;
                     List<StatusTasksEmployee> ListStatusTasksEmployee   = new List<StatusTasksEmployee>();
 
+                    int i = 1;
                     foreach (var t in tasksEmployee)
                     {
                         StatusTasksEmployee statusTasksEmployee = new StatusTasksEmployee() { EmployeеID = employee.ID, Employeе = employee, StatusTask = statusTask, TasksEmployee = t };
+                        
+                        if (i == 1 ^ i == 2 ^ i == 3)
+                        {
+                            statusTasksEmployee.StatusTask = statusDone;
+                        }
                         ListStatusTasksEmployee.Add(statusTasksEmployee);
+                        i = i++;
                     }
 
                     db.StatusTasksEmployees.AddRange(ListStatusTasksEmployee);
