@@ -30,7 +30,7 @@ namespace WebServiceApplication.Models
         {
             using (MatchingContext db = new MatchingContext())
             {
-                Employee employee = db.Employeеs.FirstOrDefault(p => p.IDEmployeе == IDEmployee);
+                Employee employee = db.Employeеs.First(p => p.IDEmployeе == IDEmployee);
                 if (employee != null)
                 {
                     var tasksEmployee                                   = db.TasksEmployees.ToList();
