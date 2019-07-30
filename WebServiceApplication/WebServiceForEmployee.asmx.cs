@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
@@ -21,7 +22,7 @@ namespace WebServiceApplication
     // Чтобы разрешить вызывать веб-службу из скрипта с помощью ASP.NET AJAX, раскомментируйте следующую строку. 
     // [System.Web.Script.Services.ScriptService]
     public class WebServiceForEmployee : System.Web.Services.WebService
-    {
+    {        
         private MatchingContext db = new MatchingContext();
 
         
@@ -44,26 +45,14 @@ namespace WebServiceApplication
             public string Image { get; set; }
                         
         }
-        public struct Device
-        {
-            [XmlAttribute("IDEmployeе")]            
-            public Guid IDEmployeе { get; set; }
-
-            [XmlAttribute("FactoryNumber")]
-            public string FactoryNumber { get; set; }
-
-            [XmlAttribute("IDMeteringDevice")]
-            public Guid IDMeteringDevice { get; set; }
-        }
-
-
-
-        [WebMethod]                
+        
+               
+        [WebMethod(Description = "Авторизация сотрудника и получение внешнего идентификатора('IDEmployeе').")]        
         public Employee Authorization(Person person)
         {
-            var results = new List<ValidationResult>();
-            var context = new ValidationContext(person);
-            string Mistake = "";
+            var results     = new List<ValidationResult>();
+            var context     = new ValidationContext(person);
+            string Mistake  = "";
             if (!Validator.TryValidateObject(person, context, results, true))
             {
                 foreach (var error in results)
@@ -91,8 +80,65 @@ namespace WebServiceApplication
             return employeе;
         }
 
+        [WebMethod(Description = "Обновление НСИ сотрудника по внешнему идентификатору('IDEmployeе').")]
+        public Employee UpdateEmployee(Guid IDEmployeе, Person person)
+        {
+            var results     = new List<ValidationResult>();
+            var context     = new ValidationContext(person);
+            string Mistake  = "";
+            if (!Validator.TryValidateObject(person, context, results, true))
+            {
+                foreach (var error in results)
+                {
+                    Mistake = Mistake + " " + error.ErrorMessage;
+                }
+            }
 
-        [WebMethod]
+            if (Mistake != "")
+            {
+                throw new Exception(Mistake);
+            }
+
+            Employee employee = db.Employeеs.First(p => p.IDEmployeе == IDEmployeе);
+            if (employee != null)
+            {
+                employee.FirstName  = person.FirstName;
+                employee.SecondName = person.SecondName;
+                employee.ThirdName  = person.ThirdName;                
+                employee.FullName   = employee.GetInfo();
+                employee.Image      = Convert.FromBase64String(person.Image);
+                              
+                db.SaveChanges();
+            }
+            else
+            {
+                throw new Exception("Не найден пользователь с внешним идентификатором: " + IDEmployeе.ToString());
+            }                  
+
+            return employee;
+        }
+
+        [WebMethod(Description = "Добавление истории должностей сотрудника по внешнему идентификатору('IDEmployeе') в формате json.")]
+        public string AddPositionListForEmployeeJson(string Data)
+        {
+            var DataJson        = JObject.Parse(Data);
+            Guid IDEmployeе     = new Guid((string)DataJson["IDEmployeе"]);
+
+            Employee employee   = db.Employeеs.First(p => p.IDEmployeе == IDEmployeе);
+            if (employee != null)
+            {               
+
+                db.SaveChanges();
+            }
+            else
+            {
+                throw new Exception("Не найден пользователь с внешним идентификатором: " + IDEmployeе.ToString());
+            }
+
+            return $"IDEmployeе={IDEmployeе.ToString()}";
+        }
+
+        [WebMethod(Description = "Получить список задач.")]
         public TasksEmployee[] GetTasksToEmployee()
         {       
             try
@@ -107,7 +153,7 @@ namespace WebServiceApplication
 
         }
 
-        [WebMethod]
+        [WebMethod(Description = "Регистрация задач сотруднику по внешнему идентификатору('IDEmployeе').")]
         public string AddTasksToEmployee(Guid IDEmployeе)
         {     
             try
@@ -121,7 +167,24 @@ namespace WebServiceApplication
             }
 
         }
-          
+
+
+
+
+
+
+
+        public struct Device
+        {
+            [XmlAttribute("IDEmployeе")]
+            public Guid IDEmployeе { get; set; }
+
+            [XmlAttribute("FactoryNumber")]
+            public string FactoryNumber { get; set; }
+
+            [XmlAttribute("IDMeteringDevice")]
+            public Guid IDMeteringDevice { get; set; }
+        }
 
         [WebMethod]
         public Device AddMeteringDeviceEmployee(Guid IDEmployeе, string FactoryNumber, string FullName)
@@ -170,5 +233,7 @@ namespace WebServiceApplication
             }
 
         }
+
+        
     }
 }
