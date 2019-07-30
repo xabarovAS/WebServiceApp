@@ -19,5 +19,20 @@ namespace WebServiceApplication.Models
         [Display(Name = "Не выполнено")]
         NotDone
     }
-     
+
+    public enum Position
+    {
+        [XmlAttribute("Position")]
+        Базовый,
+
+        [XmlAttribute("Position")]
+        Специалист,
+
+        [XmlAttribute("Position")]
+        Эксперт,
+
+        [XmlAttribute("Position")]
+        ЭкспертПлюс
+    }
+
 }

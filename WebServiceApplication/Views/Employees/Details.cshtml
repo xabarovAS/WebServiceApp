@@ -68,43 +68,37 @@
         </div>
     </div>
     <div class="col">
-        <table class="table table-bordered">
-            <thead>
+        <table class="table shadow-lg">
+            <thead class="thead-light text-center">
                 <tr>
-                    <th class="align-baseline">
-                        Наименование
+                    <th>
+                        Период
                     </th>
-                    <th class="align-baseline">
-                        Заводской номер
+                    <th>
+                        Должность
                     </th>
-                    <th class="align-baseline">
-                        Внешний идентификатор прибора учета
-                    </th>
+
+                    <th></th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach (var item in Model.MeteringDevices)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FullName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FactoryNumber)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IDMeteringDevice)
-                        </td>
-                    </tr>
-                }
-            </tbody>
+            @foreach (var item in Model.EmployeesPositions)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Period)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Position)
+                    </td>
+                </tr>
+            }
+
         </table>
     </div>
 </div>
 
 
-
-<p>
-    @Html.ActionLink("Изменить", "Edit", new { id = Model.ID }, new { @class = "btn btn-outline-primary" })
-    <a href="/Employees/Index" class="btn btn-outline-primary">Вернуться</a>
-</p>
+    <p>
+        @Html.ActionLink("Изменить", "Edit", new { id = Model.ID }, new { @class = "btn btn-outline-primary" })
+        <a href="/Employees/Index" class="btn btn-outline-primary">Вернуться</a>
+    </p>

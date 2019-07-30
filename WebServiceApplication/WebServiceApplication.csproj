@@ -151,9 +151,14 @@
     <Compile Include="Migrations\201907261233287_b.Designer.cs">
       <DependentUpon>201907261233287_b.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907301946502_c.cs" />
+    <Compile Include="Migrations\201907301946502_c.Designer.cs">
+      <DependentUpon>201907301946502_c.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AbstractEntity.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\EmployeesPosition.cs" />
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\MeteringDevice.cs" />
     <Compile Include="Models\StatusTasksEmployee.cs" />
@@ -364,6 +369,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907261233287_b.resx">
       <DependentUpon>201907261233287_b.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907301946502_c.resx">
+      <DependentUpon>201907301946502_c.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

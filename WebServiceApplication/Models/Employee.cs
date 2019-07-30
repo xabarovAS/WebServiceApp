@@ -42,6 +42,9 @@ namespace WebServiceApplication.Models
         public ICollection<StatusTasksEmployee> StatusTasksEmployees { get; set; }
 
         [XmlIgnore]
+        public ICollection<EmployeesPosition> EmployeesPositions { get; set; }
+
+        [XmlIgnore]
         public ICollection<MeteringDevice> MeteringDevices { get; set; }
 
         public Employee(string FirstName, string SecondName, string ThirdName) : base($"{SecondName} {FirstName} {ThirdName}")
