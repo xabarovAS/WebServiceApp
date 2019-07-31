@@ -6,16 +6,9 @@
         ViewBag.Title = "Details";
     }
 
-    <p>
-    </p>
+    <br>
     <h2>Детализация</h2>
-    <p>
-    </p>
-    @Html.ActionLink("Добавить задачи", "AddTaskStatuses", new { id = Model.ID }, new { @class = "btn btn-outline-success" })
-
-    <p>
-    </p>
-
+    <br>
 
     <div class="card">
         <div class="card-header text-center">
@@ -44,11 +37,10 @@
                     <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-Tasks" role="tab" aria-controls="pills-profile" aria-selected="false">Статусы задач</a>
                 </li>
             </ul>
+            <hr />
             <div class="tab-content" id="pills-tabContent">
-
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                     <div>
-                        <hr />
 
                         <div class="form-row">
                             <div class="form-group col-md-3">
@@ -69,9 +61,10 @@
                             <input type="text" class="form-control" disabled value=@Html.DisplayFor(model => model.IDEmployeе)>
                         </div>
                     </div>
+                    @Html.ActionLink("Добавить задачи", "AddTaskStatuses", new { id = Model.ID }, new { @class = "btn btn-outline-success" })
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    <hr />
+                    
                     <div class="col">
                         <table class="table">
                             <thead class="thead-light text-center">
@@ -102,11 +95,11 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="pills-Tasks" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    <hr />
+                    
                     <div class="col">
                         <table class="table">
                             <thead class="thead-light text-center">
-                                <tr>                                   
+                                <tr>
                                     <th>
                                         Задача
                                     </th>
