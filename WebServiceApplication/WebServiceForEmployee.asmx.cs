@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 using WebServiceApplication.Models;
 
 namespace WebServiceApplication
-{  
+{
 
     /// <summary>
     /// Сводное описание для WebServiceForEmployee
@@ -22,10 +22,10 @@ namespace WebServiceApplication
     // Чтобы разрешить вызывать веб-службу из скрипта с помощью ASP.NET AJAX, раскомментируйте следующую строку. 
     // [System.Web.Script.Services.ScriptService]
     public class WebServiceForEmployee : System.Web.Services.WebService
-    {        
+    {
         private MatchingContext db = new MatchingContext();
 
-        
+
         public class Person
         {
             [XmlAttribute("FirstName")]
@@ -43,16 +43,16 @@ namespace WebServiceApplication
             [XmlAttribute("Image")]
             [Required(ErrorMessage = "Необходимо передать base64 сроку.")]
             public string Image { get; set; }
-                        
+
         }
-        
-               
-        [WebMethod(Description = "Авторизация сотрудника и получение внешнего идентификатора('IDEmployeе').")]        
+
+
+        [WebMethod(Description = "Авторизация сотрудника и получение внешнего идентификатора('IDEmployeе').")]
         public Employee Authorization(Person person)
         {
-            var results     = new List<ValidationResult>();
-            var context     = new ValidationContext(person);
-            string Mistake  = "";
+            var results = new List<ValidationResult>();
+            var context = new ValidationContext(person);
+            string Mistake = "";
             if (!Validator.TryValidateObject(person, context, results, true))
             {
                 foreach (var error in results)
@@ -83,9 +83,9 @@ namespace WebServiceApplication
         [WebMethod(Description = "Обновление НСИ сотрудника по внешнему идентификатору('IDEmployeе').")]
         public Employee UpdateEmployee(Guid IDEmployeе, Person person)
         {
-            var results     = new List<ValidationResult>();
-            var context     = new ValidationContext(person);
-            string Mistake  = "";
+            var results = new List<ValidationResult>();
+            var context = new ValidationContext(person);
+            string Mistake = "";
             if (!Validator.TryValidateObject(person, context, results, true))
             {
                 foreach (var error in results)
@@ -102,18 +102,18 @@ namespace WebServiceApplication
             Employee employee = db.Employeеs.First(p => p.IDEmployeе == IDEmployeе);
             if (employee != null)
             {
-                employee.FirstName  = person.FirstName;
+                employee.FirstName = person.FirstName;
                 employee.SecondName = person.SecondName;
-                employee.ThirdName  = person.ThirdName;                
-                employee.FullName   = employee.GetInfo();
-                employee.Image      = Convert.FromBase64String(person.Image);
-                              
+                employee.ThirdName = person.ThirdName;
+                employee.FullName = employee.GetInfo();
+                employee.Image = Convert.FromBase64String(person.Image);
+
                 db.SaveChanges();
             }
             else
             {
                 throw new Exception("Не найден пользователь с внешним идентификатором: " + IDEmployeе.ToString());
-            }                  
+            }
 
             return employee;
         }
@@ -121,29 +121,52 @@ namespace WebServiceApplication
         [WebMethod(Description = "Добавление истории должностей сотрудника по внешнему идентификатору('IDEmployeе') в формате json.")]
         public string AddPositionListForEmployeeJson(string Data)
         {
-            var DataJson        = JObject.Parse(Data);
-            Guid IDEmployeе     = new Guid((string)DataJson["IDEmployeе"]);
+            var DataJson = JObject.Parse(Data);
+            Guid IDEmployeе = new Guid((string)DataJson["IDEmployeе"]);
 
-            Employee employee   = db.Employeеs.First(p => p.IDEmployeе == IDEmployeе);
+            Employee employee = db.Employeеs.First(p => p.IDEmployeе == IDEmployeе);
             if (employee != null)
-            {               
+            {
+                var PositionList = DataJson["PositionList"];
+                foreach (var item in PositionList)
+                {
+                    int selection       = (int)item["Position"];
+                    Position position   = Position.Базовый;
+                    switch (selection)
+                    {
+                        case 0:
+                            position = Position.Базовый;
+                            break;
+                        case 1:
+                            position = Position.Специалист;
+                            break;
+                        case 2:
+                            position = Position.Эксперт;
+                            break;
+                        case 3:
+                            position = Position.ЭкспертПлюс;
+                            break;                        
+                    }
+                    DateTime Period     = (DateTime)item["Period"];                    
+                    db.EmployeesPositions.Add(new EmployeesPosition { Employeе = employee, EmployeеID = employee.ID, Period = Period, Position = position });
+                    db.SaveChanges();
+                }
 
-                db.SaveChanges();
             }
             else
             {
                 throw new Exception("Не найден пользователь с внешним идентификатором: " + IDEmployeе.ToString());
             }
 
-            return $"IDEmployeе={IDEmployeе.ToString()}";
+            return "Выполнено";
         }
 
         [WebMethod(Description = "Получить список задач.")]
         public TasksEmployee[] GetTasksToEmployee()
-        {       
+        {
             try
             {
-                TasksEmployee[] tasksEmployees      = db.TasksEmployees.ToArray();
+                TasksEmployee[] tasksEmployees = db.TasksEmployees.ToArray();
                 return tasksEmployees;
             }
             catch
@@ -155,10 +178,10 @@ namespace WebServiceApplication
 
         [WebMethod(Description = "Регистрация задач сотруднику по внешнему идентификатору('IDEmployeе').")]
         public string AddTasksToEmployee(Guid IDEmployeе)
-        {     
+        {
             try
             {
-                TasksEmployee.AddTasksToEmployee(IDEmployeе);                
+                TasksEmployee.AddTasksToEmployee(IDEmployeе);
                 return "Выполнено";
             }
             catch
@@ -212,12 +235,12 @@ namespace WebServiceApplication
                 Employee employee = db.Employeеs.First(p => p.IDEmployeе == IDEmployeе); //FirstOrDefault();
                 if (employee != null)
                 {
-                    meteringDevice.Owner            = employee;
+                    meteringDevice.Owner = employee;
                     db.MeteringDevices.Add(meteringDevice);
                     db.SaveChanges();
 
-                    device.IDEmployeе       = IDEmployeе;
-                    device.FactoryNumber    = FactoryNumber;
+                    device.IDEmployeе = IDEmployeе;
+                    device.FactoryNumber = FactoryNumber;
                     device.IDMeteringDevice = meteringDevice.IDMeteringDevice;
                 }
                 else
@@ -234,6 +257,6 @@ namespace WebServiceApplication
 
         }
 
-        
+
     }
 }

@@ -30,7 +30,10 @@ namespace WebServiceApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = await db.Employeеs.Include(p => p.MeteringDevices).Include(p => p.EmployeesPositions).FirstAsync(p => p.ID == id);
+            Employee employee = await db.Employeеs
+                                                .Include(p => p.StatusTasksEmployees.Select(c => c.TasksEmployee))
+                                                .Include(p => p.EmployeesPositions)
+                                                .FirstAsync(p => p.ID == id);
             if (employee == null)
             {
                 return HttpNotFound();

@@ -15,6 +15,7 @@ namespace WebServiceApplication
         public DbSet<MeteringDevice> MeteringDevices { get; set; }
         public DbSet<StatusTasksEmployee> StatusTasksEmployees { get; set; }
         public DbSet<TasksEmployee> TasksEmployees { get; set; }
+        public DbSet<EmployeesPosition> EmployeesPositions { get; set; }
 
     }
 }
