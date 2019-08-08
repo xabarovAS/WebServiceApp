@@ -1,9 +1,12 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.EnterpriseServices;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
 using System.Web.Services;
 using System.Web.Services.Protocols;
@@ -26,28 +29,35 @@ namespace WebServiceApplication
         private MatchingContext db = new MatchingContext();
 
 
+        //[Serializable]
+        //[XmlType]
+        //[XmlElement(IsNullable = true)]
         public class Person
         {
             [XmlAttribute("FirstName")]
-            [Required(ErrorMessage = "Не указано имя пользователя.")]
+            [Required(AllowEmptyStrings = true, ErrorMessage = "Не указано имя пользователя.")]
+            //[XmlElement(IsNullable = true)]
             public string FirstName { get; set; }
 
             [XmlAttribute("SecondName")]
             [Required(ErrorMessage = "Не указана фамилия пользователя.")]
+           //[XmlElement(IsNullable = false)]
             public string SecondName { get; set; }
 
             [XmlAttribute("ThirdName")]
             [Required(ErrorMessage = "Не указано отчество пользователя.")]
+            //[XmlElement(IsNullable = false)]
             public string ThirdName { get; set; }
 
             [XmlAttribute("Image")]
             [Required(ErrorMessage = "Необходимо передать base64 сроку.")]
+            //[XmlElement(IsNullable = false)]
             public string Image { get; set; }
 
         }
 
 
-        [WebMethod(Description = "Авторизация сотрудника и получение внешнего идентификатора('IDEmployeе').")]
+        [WebMethod(Description = "Авторизация сотрудника и получение внешнего идентификатора('IDEmployeе').")]       
         public Employee Authorization(Person person)
         {
             var results = new List<ValidationResult>();

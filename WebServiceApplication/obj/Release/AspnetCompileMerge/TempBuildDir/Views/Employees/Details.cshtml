@@ -1,0 +1,143 @@
+﻿<div class="container">
+
+    @model WebServiceApplication.Models.Employee
+
+    @{
+        ViewBag.Title = "Details";
+    }
+
+    <br>
+    <h2>Детализация</h2>
+    <br>
+
+    <div class="card">
+        <div class="card-header text-center">
+            <div class="mx-auto my-2 order-0 order-md-1 position-relative">
+                @if (Model.Image != null)
+                {
+                    @Html.Raw("<img class='rounded-circle shadow-lg' style='width:100px; height:100px;' src=\"data:image/png;base64,"
+                                                    + Convert.ToBase64String(Model.Image) + "\" />")
+                }
+                else
+                {
+                    <img src="/images/logo.png" class="rounded-circle shadow-lg" width="100" height="100">
+                }
+            </div>
+
+        </div>
+        <div class="card-body">
+            <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Общие данные</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Карьерный рост в компании</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-Tasks" role="tab" aria-controls="pills-profile" aria-selected="false">Статусы задач</a>
+                </li>
+            </ul>
+            <hr />
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label class="text-primary" for="inputPassword4">@Html.DisplayNameFor(model => model.SecondName)</label>
+                                <input type="text" class="form-control" disabled value=@Html.DisplayFor(model => model.SecondName)>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="text-primary" for="inputEmail4">@Html.DisplayNameFor(model => model.FirstName)</label>
+                                <input type="text" class="form-control" disabled value=@Html.DisplayFor(model => model.FirstName)>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="text-primary" for="inputPassword4">@Html.DisplayNameFor(model => model.ThirdName)</label>
+                                <input type="text" class="form-control" disabled value=@Html.DisplayFor(model => model.ThirdName)>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-primary" for="inputAddress">@Html.DisplayNameFor(model => model.IDEmployeе)</label>
+                            <input type="text" class="form-control" disabled value=@Html.DisplayFor(model => model.IDEmployeе)>
+                        </div>
+                    </div>
+                    @Html.ActionLink("Добавить задачи", "AddTaskStatuses", new { id = Model.ID }, new { @class = "btn btn-outline-success" })
+                </div>
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    
+                    <div class="col">
+                        <table class="table">
+                            <thead class="thead-light text-center">
+                                <tr>
+                                    <th>
+                                        Период
+                                    </th>
+                                    <th>
+                                        Должность
+                                    </th>
+
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            @foreach (var item in Model.EmployeesPositions)
+                            {
+                                <tr>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Period)
+                                    </td>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.Position)
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-Tasks" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    
+                    <div class="col">
+                        <table class="table">
+                            <thead class="thead-light text-center">
+                                <tr>
+                                    <th>
+                                        Задача
+                                    </th>
+                                    <th>
+                                        Статус
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            @foreach (var item in Model.StatusTasksEmployees)
+                            {
+                                <tr>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.TasksEmployee.FullName)
+                                    </td>
+                                    <td class="text-center">
+                                        @if (item.StatusTask == WebServiceApplication.Models.StatusTask.Done)
+                                        {
+                                            <text>Выполнено</text>
+                                        }
+                                        else
+                                        {
+                                            <text>Не выполнено</text>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <p>
+        @Html.ActionLink("Изменить", "Edit", new { id = Model.ID }, new { @class = "btn btn-outline-primary" })
+        <a href="/Employees/Index" class="btn btn-outline-primary">Вернуться</a>
+    </p>
+</div>

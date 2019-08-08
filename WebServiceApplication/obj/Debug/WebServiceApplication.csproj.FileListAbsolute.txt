@@ -169,7 +169,6 @@ C:\Users\Хабаров Алексей\Desktop\GitHub\WebServiceApp\WebServiceAp
 C:\Users\Хабаров Алексей\Desktop\GitHub\WebServiceApp\WebServiceApplication\bin\ru\System.Web.WebPages.resources.dll
 C:\Users\Хабаров Алексей\Desktop\GitHub\WebServiceApp\WebServiceApplication\bin\ru\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Хабаров Алексей\Desktop\GitHub\WebServiceApp\WebServiceApplication\bin\ru\System.Web.WebPages.Razor.resources.dll
-C:\Users\Хабаров Алексей\Desktop\GitHub\WebServiceApp\WebServiceApplication\obj\Debug\WebServiceApplication.csprojAssemblyReference.cache
 C:\Users\Хабаров Алексей\Desktop\GitHub\WebServiceApp\WebServiceApplication\obj\Debug\WebServiceApplication.Migrations.a.resources
 C:\Users\Хабаров Алексей\Desktop\GitHub\WebServiceApp\WebServiceApplication\obj\Debug\WebServiceApplication.csproj.GenerateResource.cache
 C:\Users\Хабаров Алексей\Desktop\GitHub\WebServiceApp\WebServiceApplication\obj\Debug\WebServiceApplication.csproj.CoreCompileInputs.cache
@@ -180,3 +179,4 @@ C:\Users\Хабаров Алексей\Desktop\GitHub\WebServiceApp\WebServiceAp
 C:\Users\Alex\Desktop\WebServiceApp2\WebServiceApplication\obj\Debug\WebServiceApplication.Migrations.b.resources
 C:\Users\Alex\Desktop\WebServiceApp2\WebServiceApplication\obj\Debug\WebServiceApplication.Migrations.c.resources
 C:\Users\Хабаров Алексей\Desktop\GitHub\WebServiceApp\WebServiceApplication\obj\Debug\WebServiceApplication.Migrations.c.resources
+C:\Users\Хабаров Алексей\Desktop\GitHub\WebServiceApp\WebServiceApplication\obj\Debug\WebServiceApplication.csprojAssemblyReference.cache

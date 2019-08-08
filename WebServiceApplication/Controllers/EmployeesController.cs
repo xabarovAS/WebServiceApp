@@ -37,15 +37,7 @@ namespace WebServiceApplication.Controllers
             if (employee == null)
             {
                 return HttpNotFound();
-            }
-
-            //if (employee.Image != null)
-            //{
-                
-            //    //string imreBase64Data = Convert.ToBase64String(employee.Image);
-            //    //string imgDataURL = string.Format("data:image/png;base64,{0}", imreBase64Data);
-            //    ViewBag.ImageData = Encoding.ASCII.GetString(employee.Image);
-            //}
+            }           
 
             return View(employee);
         }

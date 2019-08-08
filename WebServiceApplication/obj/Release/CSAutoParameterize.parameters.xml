@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="WebSerContext-Web.config Connection String" description="WebSerContext Строка подключения в web.config, используемая приложением для доступа к базе данных." defaultValue="Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=WebService;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Хабаров\ Алексей\\Desktop\\GitHub\\WebServiceApp\\WebServiceApplication\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='WebSerContext']/@connectionString" />
+  </parameter>
+</parameters>

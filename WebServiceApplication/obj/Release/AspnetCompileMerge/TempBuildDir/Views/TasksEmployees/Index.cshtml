@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebServiceApplication.Models.TasksEmployee>
+<div class="container">
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <div class="text-center">
+        <p>
+        <p>
+            <h2> Список задач</h2>
+        </p>
+        </p>
+    </div>
+
+    <p>
+        @Html.ActionLink("Добавить", "Create", "", new { @class = "btn btn-outline-primary" })
+    </p>
+
+
+    @foreach (var item in Model)
+    {
+
+        <div class="card m-sm-1 shadow-lg">
+            <!-- card-header -->
+            <div class="card-header border-dark">
+                @Html.DisplayFor(modelItem => item.FullName)
+            </div>
+            <!-- card-body -->
+            <div class="card-body">
+                <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                @Html.ActionLink("Изменить", "Edit", new { id = item.ID }, new { @class = "btn btn-outline-success" })
+                @Html.ActionLink("Описание", "Details", new { id = item.ID }, new { @class = "btn btn-outline-primary" })
+                @Html.ActionLink("Удалить", "Delete", new { id = item.ID }, new { @class = "btn btn-outline-danger" })
+            </div>
+        </div>
+
+    }
+
+</div>
